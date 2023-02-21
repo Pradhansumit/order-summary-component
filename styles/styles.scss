@@ -1,0 +1,155 @@
+//colors
+
+//primary
+
+$Paleblue: hsl(225, 100%, 94%);
+$Brightblue: hsl(245, 75%, 52%);
+//neutral
+
+$Verypaleblue: hsl(225, 100%, 98%);
+$Desaturatedblue: hsl(224, 23%, 55%);
+$Darkblue: hsl(223, 47%, 23%);
+
+//typography
+$fsize: 16px;
+$ffam: "Red Hat Display", sans-serif;
+
+$fbase: 500;
+$fbold: 700;
+$fxbold: 900;
+
+@mixin Flex($dir, $jc) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $jc;
+  align-items: center;
+}
+
+//globals
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  @include Flex(row, center);
+  min-height: 100vh;
+  font-family: $ffam;
+  font-weight: $fbase;
+}
+
+.container {
+  background: white;
+  width: 327px;
+  height: auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .content {
+    @include Flex(column, space-between);
+    gap: 1.5rem;
+    padding: 34px 25px;
+
+    .title {
+      font-weight: $fxbold;
+    }
+    .desc {
+      text-align: center;
+      font-weight: $fbold;
+      color: rgba(0, 0, 0, 0.4);
+      line-height: 1.6;
+    }
+    .plan-container {
+      width: 100%;
+      @include Flex(row, space-between);
+      padding: 1rem;
+      gap: 1rem;
+      border-radius: 10px;
+      background: $Verypaleblue;
+
+      p:nth-child(1) {
+        font-weight: $fxbold;
+      }
+      p:nth-child(2) {
+        color: $Desaturatedblue;
+      }
+      .change {
+        background: none;
+        border: none;
+        text-decoration: underline;
+        color: $Brightblue;
+        font-weight: $fbold;
+        margin-left: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3 ease;
+        &:hover {
+          text-decoration: none;
+          color: $Desaturatedblue;
+        }
+      }
+    }
+
+    .proceed {
+      width: 100%;
+      padding: 1rem;
+      font-weight: $fxbold;
+      color: white;
+      background: $Brightblue;
+      outline: none;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 15px 30px hsla(245, 75%, 52%, 0.25);
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: $Desaturatedblue;
+      }
+    }
+
+    .cancel {
+      color: $Desaturatedblue;
+      font-weight: $fxbold;
+      background: transparent;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        color: $Darkblue;
+      }
+    }
+  }
+}
+
+@media screen {
+  body {
+    background: url(../images/pattern-background-mobile.svg);
+    background-repeat: no-repeat;
+    background-color: $Paleblue;
+    background-size: contain;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  body {
+    background: url(../images/pattern-background-desktop.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: $Paleblue;
+  }
+}
